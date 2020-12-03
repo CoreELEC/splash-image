@@ -485,7 +485,11 @@ int main(int argc, char** argv)
 
 	// rescale main full image if needed
 	if (scale.resize)
+	{
 		out_size = do_resize(&out_full_image, &ihdr, scale);
+		offset.x /= scale.x;
+		offset.y /= scale.y;
+	}
 
 	// draw full screen image on framebuffer
 	memcpy(fbp, out_full_image, screen_size);
