@@ -55,7 +55,7 @@ int do_resize(unsigned char **out, struct spng_ihdr *ihdr, scale_t scale)
 
 void full_alpha_transparency(uint32_t *full_pixel, uint32_t *alpha_pixel)
 {
-	double alpha = (*alpha_pixel >> 24) / 255;
+	double alpha = (*alpha_pixel >> 24) / 255.;
 
 	if (alpha > 0.0)
 		*full_pixel = 0xFF000000 | (uint32_t)APPLY_ALPHA((*full_pixel), (*alpha_pixel), alpha);
