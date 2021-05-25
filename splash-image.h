@@ -26,8 +26,8 @@
 
 #define BLEND(back, front, alpha) ((back * (1.0 - alpha)) + (front * alpha))
 #define APPLY_ALPHA(back, front, alpha) ( \
-  ((uint8_t)(BLEND((back >>  16), (front >>  16), alpha)) <<  16) | \
-  ((uint8_t)(BLEND((back >>   8), (front >>   8), alpha)) <<   8) | \
+  ((uint8_t)(BLEND(((back >>  16) & 0xFF), ((front >>  16) & 0xFF), alpha)) <<  16) | \
+  ((uint8_t)(BLEND(((back >>   8) & 0xFF), ((front >>   8) & 0xFF), alpha)) <<   8) | \
   ((uint8_t)(BLEND((back & 0xFF), (front & 0xFF), alpha)) & 0xFF))
 
 typedef struct _scale
