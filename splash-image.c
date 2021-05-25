@@ -366,8 +366,9 @@ int main(int argc, char** argv)
 		size_t len = 0;
 		ssize_t read;
 
-		// daemonize to run in background
-		daemonize();
+		// when reading animation from /splash daemonize to run in background
+		if (strncmp(splash_path, "/splash", sizeof("/splash") - 1) == 0)
+			daemonize();
 
 		// check if animation config does exist
 		snprintf(animation_file_path, sizeof(animation_file_path), "%sconfig", splash_path);
@@ -437,6 +438,10 @@ int main(int argc, char** argv)
 			snprintf(animation_file_path, sizeof(animation_file_path),
 				"%s%d.png", splash_path, files.count);
 		}
+
+		// when reading animation from /flash daemonize to run in background
+		if (strncmp(splash_path, "/splash", sizeof("/splash") - 1) != 0)
+			daemonize();
 	}
 
 	// check if any splash got found
