@@ -27,8 +27,8 @@ int do_resize(unsigned char **out, struct spng_ihdr *ihdr, scale_t scale)
 {
 	uint32_t x, y, old_x, old_y;
 	unsigned char *new_out;
-	uint32_t new_x = ihdr->width  / scale.x;
-	uint32_t new_y = ihdr->height / scale.y;
+	uint32_t new_x = ihdr->width  / scale.x + 1;
+	uint32_t new_y = ihdr->height / scale.y + 1;
 	uint32_t new_size = new_x * new_y * scale.bytes_per_pixel;
 
 	new_out = malloc(new_size);
