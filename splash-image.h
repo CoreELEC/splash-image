@@ -12,6 +12,7 @@
 #include <inttypes.h>
 #include <time.h>
 #include <byteswap.h>
+#include <math.h>
 #include <spng.h>
 #include <unistd.h>
 #include <string.h>
