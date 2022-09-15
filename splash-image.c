@@ -525,8 +525,8 @@ int main(int argc, char** argv)
 		while (!end_animation)
 			usleep(5000);
 
-		// stop periodic timer
-		stop_timer(animation_timer);
+		// finalize periodic timer
+		finalize();
 
 		if (*animation_data.out_full_image_animation)
 			free(*animation_data.out_full_image_animation);
