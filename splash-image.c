@@ -241,7 +241,7 @@ void show_next_image(size_t timer_id, void * user_data)
 		{
 			full_alpha_transparency((uint32_t *)(*out_full_image_animation + (x + offset->x) * vinfo->bits_per_pixel / 8
 				+ (y + offset->y) * finfo->line_length),
-				(uint32_t *)(*out_image + x * vinfo->bits_per_pixel / 8 + y * out_size / ihdr.height));
+				(uint32_t *)(*out_image + x * vinfo->bits_per_pixel / 8 + (uint64_t)y * out_size / (uint64_t)ihdr.height));
 		}
 	}
 
