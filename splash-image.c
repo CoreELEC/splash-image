@@ -235,13 +235,16 @@ void show_next_image(size_t timer_id, void * user_data)
 		out_size = do_resize(out_image, &ihdr, *scale);
 
 	// blend alpha image over full image
+	uint32_t bytes_per_pixel = vinfo->bits_per_pixel / 8;
+	uint32_t y_offset, y_offset_out;
 	for (y = 0; y < ihdr.height; y++)
 	{
+		y_offset = (y + offset->y) * finfo->line_length;
+		y_offset_out = (uint64_t)y * out_size / (uint64_t)ihdr.height;
 		for (x = 0; x < ihdr.width; x++)
 		{
-			full_alpha_transparency((uint32_t *)(*out_full_image_animation + (x + offset->x) * vinfo->bits_per_pixel / 8
-				+ (y + offset->y) * finfo->line_length),
-				(uint32_t *)(*out_image + x * vinfo->bits_per_pixel / 8 + (uint64_t)y * out_size / (uint64_t)ihdr.height));
+			full_alpha_transparency((uint32_t *)(*out_full_image_animation + (x + offset->x) * bytes_per_pixel + y_offset),
+				(uint32_t *)(*out_image + x * bytes_per_pixel + y_offset_out));
 		}
 	}
 
